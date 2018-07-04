@@ -44,3 +44,54 @@ databaseChangeLog:
           schemaName: bluebird
           startWith: 2
           tableName: user_story
+
+  - changeSet:
+      id: 4
+      author: Oana
+      changes:
+      - createTable:
+          columns:
+          - column:
+              name: id
+              type: integer
+          - column:
+              name: title
+              type: varchar(255)
+          - column:
+              name: description
+              type: varchar(255)
+          - column:
+              name: priority
+              type: integer
+          - column:
+              name: estimation
+              type: integer
+          - column:
+              name: userStoryId
+              type: integer
+          schemaName: bluebird
+          tableName: task
+
+      - addPrimaryKey:
+          columnNames: id
+          constraintName: pk_task
+          tableName: task
+
+      - addAutoIncrement:
+          columnDataType: int
+          columnName: id
+          incrementBy: 1
+          schemaName: bluebird
+          startWith: 1
+          tableName: task
+
+  - changeSet:
+      id: 5
+      author: Oana
+      changes:
+      - addForeignKeyConstraint:
+          baseColumnNames: userStoryId
+          baseTableName: task
+          constraintName: fk_task_user_story
+          referencedColumnNames: id
+          referencedTableName: user_story
