@@ -35,10 +35,10 @@ public class TaskService {
 
         if (taskEntityOptional.isPresent()) {
 
-            Task tmp = taskMapper.entityToBusinessObject(taskEntityOptional.get());
-            tmp.setUserStory(userStoryService.get(taskEntityOptional.get().getUserStoryId()));
+            Task savedTask = taskMapper.entityToBusinessObject(taskEntityOptional.get());
+            savedTask.setUserStory(userStoryService.get(taskEntityOptional.get().getUserStoryId()));
 
-            return tmp;
+            return savedTask;
         }
 
         throw new EntityNotFoundException();
