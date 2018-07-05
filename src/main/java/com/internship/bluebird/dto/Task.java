@@ -7,7 +7,15 @@ public class Task {
     private String description;
     private Integer priority;
     private Integer estimation;
-    private UserStory userStory;
+    private Integer userStoryId;
+
+    public Integer getUserStoryId() {
+        return userStoryId;
+    }
+
+    public void setUserStoryId(Integer userStoryId) {
+        this.userStoryId = userStoryId;
+    }
 
     public Integer getId() {
         return id;
@@ -47,14 +55,6 @@ public class Task {
 
     public void setEstimation(Integer estimation) {
         this.estimation = estimation;
-    }
-
-    public UserStory getUserStory() {
-        return userStory;
-    }
-
-    public void setUserStory(UserStory userStory) {
-        this.userStory = userStory;
     }
 
     @Override

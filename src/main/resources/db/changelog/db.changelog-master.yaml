@@ -95,3 +95,13 @@ databaseChangeLog:
           constraintName: fk_task_user_story
           referencedColumnNames: id
           referencedTableName: user_story
+
+  - changeSet:
+      id: 6
+      author: Oana
+      changes:
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: userStoryId
+          schemaName: bluebird
+          tableName: task
