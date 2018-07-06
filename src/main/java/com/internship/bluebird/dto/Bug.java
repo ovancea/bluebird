@@ -53,7 +53,7 @@ public class Bug {
         return userStoryId;
     }
 
-    public void setUserStoryId(Integer userStory) {
+    public void setUserStoryId(Integer userStoryId) {
         this.userStoryId = userStoryId;
     }
 

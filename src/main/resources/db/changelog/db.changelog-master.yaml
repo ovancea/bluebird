@@ -152,3 +152,13 @@ databaseChangeLog:
           constraintName: fk_bug_user_story
           referencedColumnNames: id
           referencedTableName: user_story
+
+  - changeSet:
+      id: 8
+      author: Oana
+      changes:
+      - addNotNullConstraint:
+          columnDataType: int
+          columnName: userStoryId
+          schemaName: bluebird
+          tableName: bug
