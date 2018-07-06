@@ -1,5 +1,7 @@
 package com.internship.bluebird.dto;
 
+import java.util.List;
+
 public class UserStory {
 
 
@@ -8,6 +10,17 @@ public class UserStory {
     private String description;
     private Integer priority;
     private Integer estimation;
+
+    private List<Task> taskList;
+
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
 
     public Integer getId() {
         return id;
@@ -55,8 +68,9 @@ public class UserStory {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", priority='" + priority + '\'' +
-                ", estimation='" + estimation + '\'' +
+                ", priority=" + priority +
+                ", estimation=" + estimation +
+                ", taskList=" + taskList +
                 '}';
     }
 }

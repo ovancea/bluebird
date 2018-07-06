@@ -7,6 +7,7 @@ import com.internship.bluebird.repo.TaskRepo;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,46 +15,55 @@ public class TaskService {
 
     private TaskRepo taskRepo;
     private TaskMapper taskMapper;
-    private UserStoryService userStoryService;
 
-    public TaskService(TaskRepo taskRepo, TaskMapper taskMapper, UserStoryService userStoryService) {
+
+    public TaskService(TaskRepo taskRepo, TaskMapper taskMapper) {
         this.taskRepo = taskRepo;
         this.taskMapper = taskMapper;
-        this.userStoryService = userStoryService;
+
     }
 
-    public Task create(Task task)
-    {
+    public Task create(Task task) {
         TaskEntity taskEntity = taskMapper.businessObjectToEntity(task);
-        taskEntity.setUserStoryId(task.getUserStory().getId());
         return taskMapper.entityToBusinessObject(taskRepo.save(taskEntity));
     }
 
-    public Task get(Integer id)
+    public List<Task> create(List<Task> taskList)
     {
+       List<TaskEntity> taskEntityList = taskMapper.businessObjectsToEntities(taskList);
+       return taskMapper.entitiesToBusinessObject(taskRepo.saveAll(taskEntityList));
+    }
+
+    public Task get(Integer id) {
         Optional<TaskEntity> taskEntityOptional = taskRepo.findById(id);
 
         if (taskEntityOptional.isPresent()) {
 
-            Task savedTask = taskMapper.entityToBusinessObject(taskEntityOptional.get());
-            savedTask.setUserStory(userStoryService.get(taskEntityOptional.get().getUserStoryId()));
-
-            return savedTask;
+            return taskMapper.entityToBusinessObject(taskEntityOptional.get());
         }
 
         throw new EntityNotFoundException();
     }
 
-    public Task update(Task task)
-    {
+    public List<Task> findByUserStoryId(Integer id) {
+
+        List<Task> taskList = taskMapper.entitiesToBusinessObject(taskRepo.findByUserStoryId(id));
+
+        return taskList;
+    }
+
+    public Task update(Task task) {
         TaskEntity taskEntity = taskMapper.businessObjectToEntity(task);
-        taskEntity.setUserStoryId(task.getUserStory().getId());
         return taskMapper.entityToBusinessObject(taskRepo.save(taskEntity));
     }
 
-    public void delete(Integer id)
-    {
+    public void delete(Integer id) {
         taskRepo.deleteById(id);
+    }
+
+    public void deleteByUserStoryId(Integer id)
+    {
+        taskRepo.deleteByUserStoryId(id);
     }
 
 }
