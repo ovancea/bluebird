@@ -152,3 +152,34 @@ databaseChangeLog:
           constraintName: fk_bug_user_story
           referencedColumnNames: id
           referencedTableName: user_story
+
+  - changeSet:
+      id: 9
+      author: Oana
+      changes:
+      - createTable:
+          columns:
+          - column:
+              name: id
+              type: integer
+          - column:
+              name: name
+              type: varchar(255)
+          - column:
+              name: email
+              type: varchar(255)
+          schemaName: bluebird
+          tableName: user
+
+      - addPrimaryKey:
+          columnNames: id
+          constraintName: pk_user
+          tableName: user
+
+      - addAutoIncrement:
+          columnDataType: int
+          columnName: id
+          incrementBy: 1
+          schemaName: bluebird
+          startWith: 1
+          tableName: user
