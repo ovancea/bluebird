@@ -10,17 +10,9 @@ public class UserStory {
     private String description;
     private Integer priority;
     private Integer estimation;
-
     private List<Task> taskList;
 
-
-    public List<Task> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
-    }
+    private List<Bug> bugList;
 
     public Integer getId() {
         return id;
@@ -60,6 +52,22 @@ public class UserStory {
 
     public void setEstimation(Integer estimation) {
         this.estimation = estimation;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public List<Bug> getBugList() {
+        return bugList;
+    }
+
+    public void setBugList(List<Bug> bugList) {
+        this.bugList = bugList;
     }
 
     @Override
