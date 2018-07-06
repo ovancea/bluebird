@@ -1,5 +1,7 @@
 package com.internship.bluebird.dto;
 
+import com.internship.bluebird.config.StatusEnum;
+
 public class Task {
 
     private Integer id;
@@ -8,6 +10,8 @@ public class Task {
     private Integer priority;
     private Integer estimation;
     private Integer userStoryId;
+
+    private StatusEnum status;
 
     public Integer getUserStoryId() {
         return userStoryId;
@@ -19,6 +23,14 @@ public class Task {
 
     public Integer getId() {
         return id;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     public void setId(Integer id) {

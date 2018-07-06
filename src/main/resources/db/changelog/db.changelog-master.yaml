@@ -162,3 +162,31 @@ databaseChangeLog:
           columnName: userStoryId
           schemaName: bluebird
           tableName: bug
+
+  - changeSet:
+      id: 10
+      author: Oana
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: status
+              type: varchar(255)
+          schemaName: bluebird
+          tableName: bug
+
+      - addColumn:
+          columns:
+          - column:
+              name: status
+              type: varchar(255)
+          schemaName: bluebird
+          tableName: task
+
+      - addColumn:
+          columns:
+          - column:
+              name: status
+              type: varchar(255)
+          schemaName: bluebird
+          tableName: user_story

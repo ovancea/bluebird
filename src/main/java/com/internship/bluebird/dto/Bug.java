@@ -1,5 +1,7 @@
 package com.internship.bluebird.dto;
 
+import com.internship.bluebird.config.StatusEnum;
+
 public class Bug {
 
     private Integer id;
@@ -8,6 +10,8 @@ public class Bug {
     private Integer priority;
     private Integer estimation;
     private Integer userStoryId;
+
+    private StatusEnum status;
 
     public Integer getId() {
         return id;
@@ -55,6 +59,14 @@ public class Bug {
 
     public void setUserStoryId(Integer userStoryId) {
         this.userStoryId = userStoryId;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     @Override

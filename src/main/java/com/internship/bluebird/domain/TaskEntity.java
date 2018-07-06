@@ -1,5 +1,7 @@
 package com.internship.bluebird.domain;
 
+import com.internship.bluebird.config.StatusEnum;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,10 @@ public class TaskEntity {
     private Integer estimation;
     @Column(name = "userStoryId")
     private Integer userStoryId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusEnum status;
 
     public Integer getId() {
         return id;
@@ -67,5 +73,13 @@ public class TaskEntity {
 
     public void setUserStoryId(Integer userStoryId) {
         this.userStoryId = userStoryId;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 }
