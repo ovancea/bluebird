@@ -1,11 +1,8 @@
 package com.internship.bluebird.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.internship.bluebird.config.StatusEnum;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="user_story")
@@ -23,6 +20,10 @@ public class UserStoryEntity {
     private Integer priority;
     @Column(name="estimation")
     private Integer estimation;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="status")
+    private StatusEnum status;
 
     public Integer getId() {
         return id;
@@ -62,5 +63,13 @@ public class UserStoryEntity {
 
     public void setEstimation(Integer estimation) {
         this.estimation = estimation;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 }

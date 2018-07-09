@@ -7,6 +7,7 @@ import com.internship.bluebird.repo.BugRepo;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,19 +15,22 @@ public class BugService {
 
     private BugRepo bugRepo;
     private BugMapper bugMapper;
-    private UserStoryService userStoryService;
 
-    public BugService(BugRepo bugRepo, BugMapper bugMapper, UserStoryService userStoryService) {
+    public BugService(BugRepo bugRepo, BugMapper bugMapper) {
         this.bugRepo = bugRepo;
         this.bugMapper = bugMapper;
-        this.userStoryService = userStoryService;
     }
 
     public Bug create(Bug bug)
     {
         BugEntity bugEntity = bugMapper.businessObjectToEntity(bug);
-        bugEntity.setUserStoryId(bug.getUserStory().getId());
         return bugMapper.entityToBusinessObject(bugRepo.save(bugEntity));
+    }
+
+    public List<Bug> create(List<Bug> bugList)
+    {
+        List<BugEntity> bugEntityList = bugMapper.businessObjectsToEntities(bugList);
+        return bugMapper.entitiesToBusinessObject(bugRepo.saveAll(bugEntityList));
     }
 
     public Bug get(Integer id)
@@ -35,25 +39,32 @@ public class BugService {
 
         if (bugEntityOptional.isPresent()) {
 
-            Bug savedBug = bugMapper.entityToBusinessObject(bugEntityOptional.get());
-            savedBug.setUserStory(userStoryService.get(bugEntityOptional.get().getUserStoryId()));
+            return bugMapper.entityToBusinessObject(bugEntityOptional.get());
 
-            return savedBug;
         }
 
         throw new EntityNotFoundException();
     }
 
+    public List<Bug> findByUserStoryId(Integer id)
+    {
+        List<Bug> bugList = bugMapper.entitiesToBusinessObject(bugRepo.findByUserStoryId(id));
+        return bugList;
+    }
     public Bug update(Bug bug)
     {
         BugEntity bugEntity = bugMapper.businessObjectToEntity(bug);
-        bugEntity.setUserStoryId(bug.getUserStory().getId());
         return bugMapper.entityToBusinessObject(bugRepo.save(bugEntity));
     }
 
     public void delete(Integer id)
     {
         bugRepo.deleteById(id);
+    }
+
+    public void deleteByUserStoryId(Integer id)
+    {
+        bugRepo.deleteByUserStoryId(id);
     }
 
 }

@@ -2,7 +2,6 @@ package com.internship.bluebird.service;
 
 import com.internship.bluebird.domain.UserStoryEntity;
 import com.internship.bluebird.dto.UserStory;
-import com.internship.bluebird.mapper.TaskMapper;
 import com.internship.bluebird.mapper.UserStoryMapper;
 import com.internship.bluebird.repo.UserStoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +18,14 @@ public class UserStoryService {
     private UserStoryRepo userStoryRepo;
     private UserStoryMapper userStoryMapper;
     private TaskService taskService;
+    private BugService bugService;
 
     @Autowired
-    public UserStoryService(UserStoryRepo userStoryRepo, UserStoryMapper userStoryMapper, TaskService taskService) {
+    public UserStoryService(UserStoryRepo userStoryRepo, UserStoryMapper userStoryMapper, TaskService taskService, BugService bugService) {
         this.userStoryRepo = userStoryRepo;
         this.userStoryMapper = userStoryMapper;
         this.taskService = taskService;
+        this.bugService = bugService;
     }
 
 
@@ -40,17 +41,24 @@ public class UserStoryService {
             savedUserStory.setTaskList(taskService.create(userStory.getTaskList()));
         }
 
+        if(!CollectionUtils.isEmpty(userStory.getBugList()))
+        {
+            userStory.getBugList().forEach(bug -> bug.setUserStoryId(savedUserStory.getId()));
+            savedUserStory.setBugList(bugService.create(userStory.getBugList()));
+        }
+
         return savedUserStory;
 
     }
 
-
+@Transactional
     public UserStory get(Integer id){
         Optional<UserStoryEntity> userStoryEntityOptional = userStoryRepo.findById(id);
 
         if (userStoryEntityOptional.isPresent()) {
             UserStory savedUserStory = userStoryMapper.entityToBusinessObject(userStoryEntityOptional.get());
             savedUserStory.setTaskList(taskService.findByUserStoryId(id));
+            savedUserStory.setBugList(bugService.findByUserStoryId(id));
             return savedUserStory;
         }
 
@@ -61,7 +69,9 @@ public class UserStoryService {
     public void delete(Integer id)
     {
         taskService.deleteByUserStoryId(id);
+        bugService.deleteByUserStoryId(id);
         userStoryRepo.deleteById(id);
+
     }
 
     @Transactional
@@ -79,6 +89,16 @@ public class UserStoryService {
                     .forEach(task -> task.setUserStoryId(savedUserStory.getId()));
 
             savedUserStory.setTaskList(taskService.create(userStory.getTaskList()));
+        }
+
+        if(!CollectionUtils.isEmpty(userStory.getBugList()))
+        {
+            userStory.getBugList()
+                    .stream()
+                    .filter(bug -> bug.getUserStoryId() == null )
+                    .forEach(bug -> bug.setUserStoryId(savedUserStory.getId()));
+
+            savedUserStory.setBugList(bugService.create(userStory.getBugList()));
         }
 
         return savedUserStory;

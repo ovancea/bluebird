@@ -1,5 +1,7 @@
 package com.internship.bluebird.dto;
 
+import com.internship.bluebird.config.StatusEnum;
+
 import java.util.List;
 
 public class UserStory {
@@ -10,17 +12,11 @@ public class UserStory {
     private String description;
     private Integer priority;
     private Integer estimation;
-
     private List<Task> taskList;
+    private List<Bug> bugList;
 
+    private StatusEnum status;
 
-    public List<Task> getTaskList() {
-        return taskList;
-    }
-
-    public void setTaskList(List<Task> taskList) {
-        this.taskList = taskList;
-    }
 
     public Integer getId() {
         return id;
@@ -60,6 +56,30 @@ public class UserStory {
 
     public void setEstimation(Integer estimation) {
         this.estimation = estimation;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public List<Bug> getBugList() {
+        return bugList;
+    }
+
+    public void setBugList(List<Bug> bugList) {
+        this.bugList = bugList;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     @Override
