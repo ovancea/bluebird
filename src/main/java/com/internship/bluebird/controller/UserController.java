@@ -5,6 +5,7 @@ import com.internship.bluebird.dto.User;
 import com.internship.bluebird.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("user")
 public class UserController {
