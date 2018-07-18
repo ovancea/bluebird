@@ -20,10 +20,20 @@ public class UserStoryEntity {
     private Integer priority;
     @Column(name="estimation")
     private Integer estimation;
+    @Column(name="userId")
+    private Integer userId;
 
     @Enumerated(EnumType.STRING)
     @Column(name="status")
     private StatusEnum status;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;

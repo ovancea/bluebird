@@ -1,6 +1,7 @@
 package com.internship.bluebird.service;
 
 import com.internship.bluebird.domain.UserStoryEntity;
+import com.internship.bluebird.dto.Bug;
 import com.internship.bluebird.dto.UserStory;
 import com.internship.bluebird.mapper.UserStoryMapper;
 import com.internship.bluebird.repo.UserStoryRepo;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,6 +53,13 @@ public class UserStoryService {
 
     }
 
+
+    public List<UserStory> findByUserId(Integer id)
+    {
+        List<UserStory> userStoryList = userStoryMapper.entitiesToBusinessObject(userStoryRepo.findByUserId(id));
+        return userStoryList;
+    }
+
 @Transactional
     public UserStory get(Integer id){
         Optional<UserStoryEntity> userStoryEntityOptional = userStoryRepo.findById(id);
@@ -72,6 +81,14 @@ public class UserStoryService {
         bugService.deleteByUserStoryId(id);
         userStoryRepo.deleteById(id);
 
+    }
+
+    @Transactional
+    public void deleteByUserId(Integer id)
+    {
+        taskService.deleteByUserId(id);
+        bugService.deleteByUserId(id);
+        userStoryRepo.deleteByUserId(id);
     }
 
     @Transactional

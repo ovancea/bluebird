@@ -221,3 +221,64 @@ databaseChangeLog:
               type: varchar(255)
           schemaName: bluebird
           tableName: user_story
+
+  - changeSet:
+      id: 11
+      author: Oana
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: userId
+              type: integer
+          schemaName: bluebird
+          tableName: bug
+
+      - addColumn:
+          columns:
+          - column:
+              name: userId
+              type: integer
+          schemaName: bluebird
+          tableName: task
+
+      - addColumn:
+          columns:
+          - column:
+              name: userId
+              type: integer
+          schemaName: bluebird
+          tableName: user_story
+
+      - addForeignKeyConstraint:
+          baseColumnNames: userId
+          baseTableName: bug
+          constraintName: fk_bug_user
+          referencedColumnNames: id
+          referencedTableName: user
+
+      - addForeignKeyConstraint:
+          baseColumnNames: userId
+          baseTableName: user_story
+          constraintName: fk_user_story_user
+          referencedColumnNames: id
+          referencedTableName: user
+
+      - addForeignKeyConstraint:
+          baseColumnNames: userId
+          baseTableName: task
+          constraintName: fk_task_user
+          referencedColumnNames: id
+          referencedTableName: user
+
+  - changeSet:
+      id: 12
+      author: Oana
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: active_flag
+              type: boolean
+          schemaName: bluebird
+          tableName: user

@@ -9,10 +9,10 @@ public class UserEntity {
 
     @Id   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
     private String name;
-    @Column
     private String email;
+    @Column(name = "active_flag")
+    private Boolean isActive;
 
     public Integer getId() {
         return id;
@@ -36,6 +36,14 @@ public class UserEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
     }
 
     @Override

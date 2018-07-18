@@ -1,10 +1,41 @@
 package com.internship.bluebird.dto;
 
+import java.util.List;
+
 public class User {
 
     private Integer id;
     private String name;
     private String email;
+    private Boolean isActive;
+
+    private List<UserStory> userStoryList;
+
+    private List<Task> taskList;
+    private List<Bug> bugList;
+    public List<UserStory> getUserStoryList() {
+        return userStoryList;
+    }
+
+    public void setUserStoryList(List<UserStory> userStoryList) {
+        this.userStoryList = userStoryList;
+    }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public List<Bug> getBugList() {
+        return bugList;
+    }
+
+    public void setBugList(List<Bug> bugList) {
+        this.bugList = bugList;
+    }
 
     public Integer getId() {
         return id;
@@ -28,6 +59,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     @Override

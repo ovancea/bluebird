@@ -10,7 +10,9 @@ import java.util.List;
 public interface BugRepo extends JpaRepository<BugEntity,Integer> {
 
     List<BugEntity> findByUserStoryId(Integer id);
+    List<BugEntity> findByUserId(Integer id);
 
     void deleteByUserStoryId(Integer id);
+    void deleteByUserId(Integer id);
 
 }

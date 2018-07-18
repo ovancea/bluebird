@@ -14,8 +14,17 @@ public class UserStory {
     private Integer estimation;
     private List<Task> taskList;
     private List<Bug> bugList;
+    private Integer userId;
 
     private StatusEnum status;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
 
     public Integer getId() {

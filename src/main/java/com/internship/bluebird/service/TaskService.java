@@ -52,6 +52,13 @@ public class TaskService {
         return taskList;
     }
 
+    public List<Task> findByUserId(Integer id) {
+
+        List<Task> taskList = taskMapper.entitiesToBusinessObject(taskRepo.findByUserId(id));
+
+        return taskList;
+    }
+
     public Task update(Task task) {
         TaskEntity taskEntity = taskMapper.businessObjectToEntity(task);
         return taskMapper.entityToBusinessObject(taskRepo.save(taskEntity));
@@ -66,4 +73,8 @@ public class TaskService {
         taskRepo.deleteByUserStoryId(id);
     }
 
+    public void deleteByUserId(Integer id)
+    {
+        taskRepo.deleteByUserId(id);
+    }
 }

@@ -2,6 +2,7 @@ package com.internship.bluebird.service;
 
 import com.internship.bluebird.domain.BugEntity;
 import com.internship.bluebird.dto.Bug;
+import com.internship.bluebird.dto.User;
 import com.internship.bluebird.mapper.BugMapper;
 import com.internship.bluebird.repo.BugRepo;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,13 @@ public class BugService {
         List<Bug> bugList = bugMapper.entitiesToBusinessObject(bugRepo.findByUserStoryId(id));
         return bugList;
     }
+
+    public List<Bug> findByUserId(Integer id)
+    {
+        List<Bug> bugList = bugMapper.entitiesToBusinessObject(bugRepo.findByUserId(id));
+        return bugList;
+    }
+
     public Bug update(Bug bug)
     {
         BugEntity bugEntity = bugMapper.businessObjectToEntity(bug);
@@ -65,6 +73,11 @@ public class BugService {
     public void deleteByUserStoryId(Integer id)
     {
         bugRepo.deleteByUserStoryId(id);
+    }
+
+    public void deleteByUserId(Integer id)
+    {
+        bugRepo.deleteByUserId(id);
     }
 
 }
