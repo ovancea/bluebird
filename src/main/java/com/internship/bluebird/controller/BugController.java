@@ -5,6 +5,7 @@ import com.internship.bluebird.dto.Bug;
 import com.internship.bluebird.service.BugService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("bug")
 public class BugController {

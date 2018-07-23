@@ -61,12 +61,12 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getActive() {
-        return isActive;
+    public Boolean getIsActive() {
+        return this.isActive;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override

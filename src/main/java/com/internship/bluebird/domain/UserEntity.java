@@ -39,11 +39,11 @@ public class UserEntity {
     }
 
     public Boolean getIsActive() {
-        return isActive;
+        return this.isActive;
     }
 
-    public void setIsActive(Boolean active) {
-        isActive = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
