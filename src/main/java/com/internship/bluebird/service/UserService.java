@@ -1,5 +1,6 @@
 package com.internship.bluebird.service;
 
+import com.internship.bluebird.config.WebSecurityConfig;
 import com.internship.bluebird.domain.UserEntity;
 import com.internship.bluebird.dto.User;
 import com.internship.bluebird.mapper.UserMapper;
@@ -89,7 +90,6 @@ public class UserService {
     public void delete(Integer id) {
         userRepo.softDelete(id);
     }
-
 
 
 }

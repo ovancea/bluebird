@@ -48,4 +48,9 @@ public class UserController {
     {
         return userService.getAll();
     }
+
+    @GetMapping("/authenticate")
+    public boolean checkCreditentials() {
+        return true;
+    }
 }
