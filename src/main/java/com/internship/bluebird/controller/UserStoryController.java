@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
-@RequestMapping("userstory")
+@RequestMapping("api/userstory")
 public class UserStoryController {
 
     private UserStoryService userStoryService;

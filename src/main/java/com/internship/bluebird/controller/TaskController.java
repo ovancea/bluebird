@@ -5,9 +5,8 @@ import com.internship.bluebird.dto.Task;
 import com.internship.bluebird.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
 @RestController
-@RequestMapping("task")
+@RequestMapping("api/task")
 public class TaskController {
 
     private TaskService taskService;
